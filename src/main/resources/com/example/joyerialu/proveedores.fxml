@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #A29E9E;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.joyerialu.ProveedoresController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="97.0" layoutX="16.0" layoutY="14.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1248.0" />
+      <Label layoutX="23.0" layoutY="18.0" text="PROVEEDORES">
+         <font>
+            <Font name="Century Gothic" size="64.0" />
+         </font>
+      </Label>
+      <TableView layoutX="16.0" layoutY="122.0" prefHeight="554.0" prefWidth="1248.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="97.0" layoutX="16.0" layoutY="689.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="1248.0" />
+      <Button fx:id="btn_BajaProveedor" layoutX="936.0" layoutY="712.0" mnemonicParsing="false" onAction="#abrirBajaProveedores" prefHeight="52.0" prefWidth="317.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="ELIMINAR PROVEEDOR " textFill="#faf9f9">
+         <font>
+            <Font name="Century Gothic" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_AltaProveedor" layoutX="603.0" layoutY="712.0" mnemonicParsing="false" onAction="#abrirAltaProveedores" prefHeight="52.0" prefWidth="318.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="AÑADIR PROVEEDOR" textFill="#faf9f9">
+         <font>
+            <Font name="Century Gothic" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_Regresar" layoutX="1057.0" layoutY="34.0" mnemonicParsing="false" onAction="#regresar" prefHeight="52.0" prefWidth="167.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="REGRESAR" textFill="#faf9f9">
+         <font>
+            <Font name="Century Gothic" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_ModificarProveedor" layoutX="248.0" layoutY="712.0" mnemonicParsing="false" onAction="#abrirModificarProveedores" prefHeight="52.0" prefWidth="340.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="MODIFICAR PROVEEDOR" textFill="#faf9f9">
+         <font>
+            <Font name="Century Gothic" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="539.0" maxWidth="529.0" minHeight="539.0" minWidth="529.0" prefHeight="539.0" prefWidth="529.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.joyerialu.AccesoController">
+   <children>
+      <ImageView fitHeight="128.0" fitWidth="129.0" layoutX="200.0" layoutY="30.0">
+         <image>
+            <Image url="@lu.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="138.0" layoutY="168.0" text="¡BIENVENIDO!" wrapText="true">
+         <font>
+            <Font name="Lucida Bright Demibold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="166.0" layoutY="223.0" text="Ingrese, por favor.">
+         <font>
+            <Font name="Lucida Bright" size="22.0" />
+         </font>
+      </Label>
+      <Pane layoutX="51.0" layoutY="267.0" prefHeight="234.0" prefWidth="431.0" style="-fx-background-color: #B2B2B2;">
+         <children>
+            <Label layoutX="24.0" layoutY="14.0" text="Usuario:" wrapText="true">
+               <font>
+                  <Font name="Lucida Bright" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="95.0" text="Contraseña:" wrapText="true">
+               <font>
+                  <Font name="Lucida Bright" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_usuario" layoutX="24.0" layoutY="47.0" prefHeight="36.0" prefWidth="382.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;" />
+            <TextField fx:id="txt_pswrd" layoutX="25.0" layoutY="129.0" prefHeight="36.0" prefWidth="382.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;" />
+            <Button fx:id="btn_ingresar" layoutX="165.0" layoutY="178.0" mnemonicParsing="false" onAction="#acceso" prefHeight="44.0" prefWidth="88.0" style="-fx-background-color: #000000FF; -fx-border-radius: 55;" text="Ingresar" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="Lucida Bright" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</Pane>

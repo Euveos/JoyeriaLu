@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.joyerialu.InicioController">
+   <children>
+      <ImageView fitHeight="235.0" fitWidth="272.0" layoutX="523.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="523.0" AnchorPane.rightAnchor="522.0" AnchorPane.topAnchor="68.0">
+         <image>
+            <Image url="@lu.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <Pane layoutX="107.0" layoutY="359.0" prefHeight="379.0" prefWidth="1067.0" style="-fx-background-color: #B2B2B2; -fx-border-radius: 50px; -fx-background-radius: 50px; -fx-border-color: black;">
+         <children>
+            <Button fx:id="btn_Abrir_Ventas" layoutX="96.0" layoutY="77.0" mnemonicParsing="false" onAction="#abrir_Ventas" prefHeight="80.0" prefWidth="254.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="VENTAS" textFill="#faf9f9">
+               <font>
+                  <Font name="Lucida Bright" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_Abrir_Almacen" layoutX="718.0" layoutY="76.0" mnemonicParsing="false" onAction="#abrir_Almacen" prefHeight="82.0" prefWidth="254.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="ALMACEN" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Bright" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_Abrir_Empleados" layoutX="409.0" layoutY="77.0" mnemonicParsing="false" onAction="#abrir_Empleados" prefHeight="79.0" prefWidth="254.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="EMPLEADOS" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Bright" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_Abrir_Proveedores" layoutX="247.0" layoutY="220.0" mnemonicParsing="false" onAction="#abrir_Proveedores" prefHeight="82.0" prefWidth="254.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="PROVEEDORES" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Bright" size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="btn_Salir" layoutX="569.0" layoutY="220.0" mnemonicParsing="false" onAction="#cerrarMenu" prefHeight="82.0" prefWidth="254.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="SALIR" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Bright" size="28.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="183.0" layoutY="81.0">
+         <image>
+            <Image url="@gemas.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="892.0" layoutY="81.0">
+         <image>
+            <Image url="@soporte.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #A29E9E;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.joyerialu.AltaEmpleadosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #A29E9E;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="97.0" layoutX="17.0" layoutY="9.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1248.0" />
       <Label layoutX="24.0" layoutY="13.0" text="ALTA DE EMPLEADOS">
@@ -20,7 +15,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="674.0" layoutX="17.0" layoutY="115.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1248.0" />
-      <Button layoutX="949.0" layoutY="723.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="294.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="DAR DE ALTA" textFill="WHITE">
+      <Button fx:id="btn_Alta" layoutX="949.0" layoutY="723.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="294.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="DAR DE ALTA" textFill="WHITE">
          <font>
             <Font name="Century Gothic" size="24.0" />
          </font>
@@ -119,42 +114,42 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="num_factura1" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1">
+            <TextField fx:id="tf_Nombres" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura11" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="tf_ApPat" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura12" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="tf_ApMat" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura121" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="tf_FecNac" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura122" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="tf_Telefono" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura123" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="tf_Correo" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura125" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <TextField fx:id="tf_Direccion" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura126" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <TextField fx:id="tf_FecReg" prefHeight="42.0" prefWidth="932.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <font>
                   <Font name="Century Gothic" size="16.0" />
                </font>
@@ -169,8 +164,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField prefHeight="42.0" prefWidth="308.0" style="-fx-background-color: #c1c6ca;" />
-                  <TextField prefHeight="42.0" prefWidth="308.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="2" />
+                  <TextField fx:id="tf_RFC" prefHeight="42.0" prefWidth="308.0" style="-fx-background-color: #c1c6ca;" />
+                  <TextField fx:id="tf_ID" prefHeight="42.0" prefWidth="308.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="2" />
                   <Label text="Cod. Empleado:" GridPane.columnIndex="1">
                      <font>
                         <Font name="Century Gothic" size="30.0" />

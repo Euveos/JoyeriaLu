@@ -6,6 +6,7 @@ module com.example.joyerialu {
     requires com.dlsc.formsfx;
     requires validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens com.example.joyerialu to javafx.fxml;
     exports com.example.joyerialu;

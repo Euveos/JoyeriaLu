@@ -34,7 +34,7 @@ public class EmpleadosController {
     private Button btn_ModificarEmpleados;
 
     @FXML
-    private TableColumn<ObjetoEmpleados,int> tc_ID;
+    private TableColumn<ObjetoEmpleados,Integer> tc_ID;
 
     @FXML
     private TableColumn<ObjetoEmpleados,String> tc_nombres;
@@ -96,9 +96,12 @@ public class EmpleadosController {
     @FXML
     private TableView tv_empleados;
 
+    @FXML
     private void accionAlta(ActionEvent event){
         if(event.getSource()==btn_AltaEmpleados){
             altaEmpleados();
+        }else if (event.getSource()==btn_ModificarEmpleados){
+            modificarEmpleados();
         }
     }
 
@@ -166,7 +169,7 @@ public class EmpleadosController {
     public void mostrarEmpleados(){
         ObservableList<ObjetoEmpleados> lista = getEmpleadosList();
 
-        tc_ID.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,int>("id"));
+        tc_ID.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,Integer>("id"));
         tc_nombres.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("nombres"));
         tc_ApPat.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("appat"));
         tc_ApMat.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("apmat"));
@@ -184,6 +187,14 @@ public class EmpleadosController {
         String query = "INSERT INTO empleados VALUES ('"+tf_nombres.getText()+"','"+tf_ApPat.getText()+"','"+
                 tf_ApMat.getText()+"','"+tf_Direccion.getText()+"','"+tf_Telefono.getText()+"','"+tf_FecNac.getText()+"','"+
                 tf_FecReg.getText()+"','"+tf_RFC.getText()+"','"+tf_Correo.getText()+"')";
+        executeQuery(query);
+        mostrarEmpleados();
+    }
+
+    private void modificarEmpleados(){
+        String query = "UPDATE empleados Nombre '"+tf_nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
+                tf_ApMat.getText()+"', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"', FechaNac = '"+
+                tf_FecNac.getText()+"', FechaRegistro = '"+tf_FecReg+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"'";
         executeQuery(query);
         mostrarEmpleados();
     }

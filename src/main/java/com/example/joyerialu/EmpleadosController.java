@@ -98,11 +98,17 @@ public class EmpleadosController {
 
     @FXML
     private void accionAlta(ActionEvent event){
-        if(event.getSource()==btn_AltaEmpleados){
             altaEmpleados();
-        }else if (event.getSource()==btn_ModificarEmpleados){
+    }
+
+    @FXML
+    private void accionModificar(ActionEvent event){
             modificarEmpleados();
-        }
+    }
+
+    @FXML
+    private void accionBaja(ActionEvent event){
+        bajaEmpleados();
     }
 
     public void regresar(){
@@ -184,7 +190,7 @@ public class EmpleadosController {
     }
 
     private void altaEmpleados(){
-        String query = "INSERT INTO empleados VALUES ('"+tf_Nombres.getText()+"','"+tf_ApPat.getText()+"','"+
+        String query = "INSERT INTO empleados VALUES ("+tf_ID.getText()+", '"+tf_Nombres.getText()+"','"+tf_ApPat.getText()+"','"+
                 tf_ApMat.getText()+"','"+tf_Direccion.getText()+"','"+tf_Telefono.getText()+"','"+tf_FecNac.getText()+"','"+
                 tf_FecReg.getText()+"','"+tf_RFC.getText()+"','"+tf_Correo.getText()+"')";
         executeQuery(query);
@@ -192,9 +198,15 @@ public class EmpleadosController {
     }
 
     private void modificarEmpleados(){
-        String query = "UPDATE empleados Nombre '"+tf_Nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
+        String query = "UPDATE empleados SET CodigoEmpleado = "+tf_ID.getText()+", Nombre = '"+tf_Nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
                 tf_ApMat.getText()+"', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"', FechaNac = '"+
                 tf_FecNac.getText()+"', FechaRegistro = '"+tf_FecReg+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"'";
+        executeQuery(query);
+        mostrarEmpleados();
+    }
+
+    private void bajaEmpleados(){
+        String query = "DELETE FROM empleados WHERE CodigoEmpleado= "+tf_ID.getText()+"";
         executeQuery(query);
         mostrarEmpleados();
     }

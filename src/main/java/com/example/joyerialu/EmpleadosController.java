@@ -134,6 +134,7 @@ public class EmpleadosController {
         }
     }
 
+    @FXML
     public void initialize(URL url, ResourceBundle rb){
         mostrarEmpleados();
     }
@@ -212,6 +213,7 @@ public class EmpleadosController {
         mostrarEmpleados();
     }
 
+    @FXML
     private void seleccionRegistro(MouseEvent event){
         ObjetoEmpleados empleado = tv_empleados.getSelectionModel().getSelectedItem();
         tf_ID.setText(""+empleado.getId());

@@ -167,7 +167,7 @@
                          <Insets left="10.0" />
                      </GridPane.margin>
                  </Label>
-                 <TextField fx:id="tf_ID" editable="false" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" />
+                 <TextField fx:id="tf_ID" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" />
                  <TextField fx:id="tf_RFC" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
            </children>
        </GridPane>

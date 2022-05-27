@@ -15,7 +15,7 @@
             <Font name="Lucida Bright" size="64.0" />
          </font>
       </Label>
-      <TableView fx:id="tv_empleados" layoutX="439.0" layoutY="125.0" prefHeight="550.0" prefWidth="814.0">
+      <TableView fx:id="tv_empleados" layoutX="439.0" layoutY="125.0" onMouseClicked="#seleccionRegistro" prefHeight="550.0" prefWidth="814.0">
         <columns>
             <TableColumn fx:id="tc_ID" prefWidth="30.0" text="ID" />
           <TableColumn fx:id="tc_Nombres" prefWidth="102.0" text="Nombres" />

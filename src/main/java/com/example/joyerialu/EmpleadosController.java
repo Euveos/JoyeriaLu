@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -94,7 +95,7 @@ public class EmpleadosController {
     private TextField tf_FecReg;
 
     @FXML
-    private TableView tv_empleados;
+    private TableView<ObjetoEmpleados> tv_empleados;
 
     @FXML
     private void accionAlta(ActionEvent event){
@@ -209,6 +210,20 @@ public class EmpleadosController {
         String query = "DELETE FROM empleados WHERE CodigoEmpleado= "+tf_ID.getText()+"";
         executeQuery(query);
         mostrarEmpleados();
+    }
+
+    private void seleccionRegistro(MouseEvent event){
+        ObjetoEmpleados empleado = tv_empleados.getSelectionModel().getSelectedItem();
+        tf_ID.setText(""+empleado.getId());
+        tf_Nombres.setText(empleado.getNombres());
+        tf_ApPat.setText(empleado.getAppat());
+        tf_ApMat.setText(empleado.getApmat());
+        tf_Direccion.setText(empleado.getDireccion());
+        tf_Telefono.setText(empleado.getTelefono());
+        tf_Correo.setText(empleado.getCorreo());
+        tf_RFC.setText(empleado.getRfc());
+        tf_FecNac.setText(empleado.getFecnac());
+        tf_FecReg.setText(empleado.getFecreg());
     }
 
     private void executeQuery(String query){

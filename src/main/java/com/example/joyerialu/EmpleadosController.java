@@ -67,7 +67,7 @@ public class EmpleadosController {
     private TextField tf_ID;
 
     @FXML
-    private TextField tf_nombres;
+    private TextField tf_Nombres;
 
     @FXML
     private TextField tf_ApPat;
@@ -184,7 +184,7 @@ public class EmpleadosController {
     }
 
     private void altaEmpleados(){
-        String query = "INSERT INTO empleados VALUES ('"+tf_nombres.getText()+"','"+tf_ApPat.getText()+"','"+
+        String query = "INSERT INTO empleados VALUES ('"+tf_Nombres.getText()+"','"+tf_ApPat.getText()+"','"+
                 tf_ApMat.getText()+"','"+tf_Direccion.getText()+"','"+tf_Telefono.getText()+"','"+tf_FecNac.getText()+"','"+
                 tf_FecReg.getText()+"','"+tf_RFC.getText()+"','"+tf_Correo.getText()+"')";
         executeQuery(query);
@@ -192,7 +192,7 @@ public class EmpleadosController {
     }
 
     private void modificarEmpleados(){
-        String query = "UPDATE empleados Nombre '"+tf_nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
+        String query = "UPDATE empleados Nombre '"+tf_Nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
                 tf_ApMat.getText()+"', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"', FechaNac = '"+
                 tf_FecNac.getText()+"', FechaRegistro = '"+tf_FecReg+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"'";
         executeQuery(query);

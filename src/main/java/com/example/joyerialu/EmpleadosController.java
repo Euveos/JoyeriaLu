@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,11 +17,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class EmpleadosController {
+public class EmpleadosController implements Initializable, Serializable {
 
     @FXML
     private Button btn_Regresar;
@@ -38,7 +40,7 @@ public class EmpleadosController {
     private TableColumn<ObjetoEmpleados,Integer> tc_ID;
 
     @FXML
-    private TableColumn<ObjetoEmpleados,String> tc_nombres;
+    private TableColumn<ObjetoEmpleados,String> tc_Nombres;
 
     @FXML
     private TableColumn<ObjetoEmpleados,String> tc_ApPat;
@@ -134,7 +136,7 @@ public class EmpleadosController {
         }
     }
 
-    @FXML
+    @Override
     public void initialize(URL url, ResourceBundle rb){
         mostrarEmpleados();
     }
@@ -178,7 +180,7 @@ public class EmpleadosController {
         ObservableList<ObjetoEmpleados> lista = getEmpleadosList();
 
         tc_ID.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,Integer>("id"));
-        tc_nombres.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("nombres"));
+        tc_Nombres.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("nombres"));
         tc_ApPat.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("appat"));
         tc_ApMat.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("apmat"));
         tc_FecNac.setCellValueFactory(new PropertyValueFactory<ObjetoEmpleados,String>("fecnac"));

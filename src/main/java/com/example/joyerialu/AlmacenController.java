@@ -55,7 +55,7 @@ public class AlmacenController implements Initializable, Serializable {
     private TableColumn<ObjetoAlmacen, Integer> tc_Stock;
 
     @FXML
-    private TableView<ObjetoAlmacen> tv_Productos;
+    private TableView<ObjetoAlmacen> tv_Producto;
 
     @FXML
     private TextField tf_Codigo;
@@ -142,7 +142,7 @@ public class AlmacenController implements Initializable, Serializable {
         tc_Descripcion.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,String>("descripcion"));
         tc_Stock.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("stock"));
 
-        tv_Productos.setItems(lista);
+        tv_Producto.setItems(lista);
     }
 
     @FXML
@@ -169,7 +169,7 @@ public class AlmacenController implements Initializable, Serializable {
 
     @FXML
     private void seleccionRegistro(MouseEvent event){
-        ObjetoAlmacen productos = tv_Productos.getSelectionModel().getSelectedItem();
+        ObjetoAlmacen productos = tv_Producto.getSelectionModel().getSelectedItem();
         tf_Codigo.setText(""+productos.getId());
         tf_Nombre.setText(productos.getNombre());
         tf_Precio.setText(""+productos.getPrecio());

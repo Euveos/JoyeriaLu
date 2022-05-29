@@ -1,15 +1,31 @@
 package com.example.joyerialu;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ResourceBundle;
 
-public class AlmacenController {
+public class AlmacenController implements Initializable, Serializable {
 
     @FXML
     private Button btn_BajaProductos;
@@ -22,6 +38,40 @@ public class AlmacenController {
 
     @FXML
     private Button btn_ModificarProductos;
+
+    @FXML
+    private TableColumn<ObjetoAlmacen, Integer> tc_Codigo;
+
+    @FXML
+    private TableColumn<ObjetoAlmacen, String> tc_Nombre;
+
+    @FXML
+    private TableColumn<ObjetoAlmacen, Integer> tc_Precio;
+
+    @FXML
+    private TableColumn<ObjetoAlmacen, String> tc_Descripcion;
+
+    @FXML
+    private TableColumn<ObjetoAlmacen, Integer> tc_Stock;
+
+    @FXML
+    private TableView<ObjetoAlmacen> tv_Productos;
+
+    @FXML
+    private TextField tf_Codigo;
+
+    @FXML
+    private TextField tf_Precio;
+
+    @FXML
+    private TextField tf_Descripcion;
+
+    @FXML
+    private TextField tf_Stock;
+
+    @FXML
+    private TextField tf_Nombre;
+
 
     public void regresar(){
         try {
@@ -45,5 +95,97 @@ public class AlmacenController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+        mostrarProductos();
+    }
+
+    public Connection getConnection(){
+        Connection conn;
+        try{
+            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/joyeria","root","");
+            return conn;
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+            return null;
+        }
+    }
+
+    public ObservableList<ObjetoAlmacen> getProductosList(){
+        ObservableList<ObjetoAlmacen> listaProductos = FXCollections.observableArrayList();
+        Connection conn = getConnection();
+        String query="SELECT * FROM productos";
+        Statement st;
+        ResultSet rs;
+
+        try{
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            ObjetoAlmacen productos;
+            while(rs.next()){
+                productos = new ObjetoAlmacen(rs.getInt("CodigoProducto"), rs.getString("NombreProducto"),
+                        rs.getInt("PrecioUnitario"),rs.getString("Descripcion"),rs.getInt("Stock"));
+                listaProductos.add(productos);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listaProductos;
+    }
+
+    public void mostrarProductos(){
+        ObservableList<ObjetoAlmacen> lista = getProductosList();
+
+        tc_Codigo.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("id"));
+        tc_Nombre.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,String>("nombre"));
+        tc_Precio.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("precio"));
+        tc_Descripcion.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,String>("descripcion"));
+        tc_Stock.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("stock"));
+
+        tv_Productos.setItems(lista);
+    }
+
+    @FXML
+    private void altaProductos(ActionEvent event){
+        String query = "INSERT INTO productos VALUES ("+tf_Codigo.getText()+", '"+tf_Nombre.getText()+"',"+tf_Precio.getText()+",'"+tf_Descripcion.getText()+"',"+tf_Stock.getText()+")";
+        executeQuery(query);
+        mostrarProductos();
+    }
+
+    @FXML
+    private void modificarProductos(ActionEvent event){
+        String query = "UPDATE productos SET CodigoProducto = "+tf_Codigo.getText()+", NombreProducto = '"+tf_Nombre.getText()+
+                "', PrecioUnitario = "+tf_Precio.getText()+", Descripcion = '"+tf_Descripcion.getText()+"', Stock = "+tf_Stock.getText()+"";
+        executeQuery(query);
+        mostrarProductos();
+    }
+
+    @FXML
+    private void bajaProductos(ActionEvent event){
+        String query = "DELETE FROM productos WHERE CodigoProducto= "+tf_Codigo.getText()+"";
+        executeQuery(query);
+        mostrarProductos();
+    }
+
+    @FXML
+    private void seleccionRegistro(MouseEvent event){
+        ObjetoAlmacen productos = tv_Productos.getSelectionModel().getSelectedItem();
+        tf_Codigo.setText(""+productos.getId());
+        tf_Nombre.setText(productos.getNombre());
+        tf_Precio.setText(""+productos.getPrecio());
+        tf_Descripcion.setText(productos.getDescripcion());
+        tf_Stock.setText(""+productos.getStock());
+    }
+
+    private void executeQuery(String query){
+        Connection conn = getConnection();
+        Statement st;
+        try{
+            st = conn.createStatement();
+            st.executeUpdate(query);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }

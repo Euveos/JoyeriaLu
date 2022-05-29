@@ -99,21 +99,6 @@ public class EmpleadosController implements Initializable, Serializable {
     @FXML
     private TableView<ObjetoEmpleados> tv_empleados;
 
-    @FXML
-    private void accionAlta(ActionEvent event){
-            altaEmpleados();
-    }
-
-    @FXML
-    private void accionModificar(ActionEvent event){
-            modificarEmpleados();
-    }
-
-    @FXML
-    private void accionBaja(ActionEvent event){
-        bajaEmpleados();
-    }
-
     public void regresar(){
         try {
 
@@ -193,6 +178,7 @@ public class EmpleadosController implements Initializable, Serializable {
         tv_empleados.setItems(lista);
     }
 
+    @FXML
     private void altaEmpleados(){
         String query = "INSERT INTO empleados VALUES ("+tf_ID.getText()+", '"+tf_Nombres.getText()+"','"+tf_ApPat.getText()+"','"+
                 tf_ApMat.getText()+"','"+tf_Direccion.getText()+"','"+tf_Telefono.getText()+"','"+tf_FecNac.getText()+"','"+
@@ -201,6 +187,7 @@ public class EmpleadosController implements Initializable, Serializable {
         mostrarEmpleados();
     }
 
+    @FXML
     private void modificarEmpleados(){
         String query = "UPDATE empleados SET CodigoEmpleado = "+tf_ID.getText()+", Nombre = '"+tf_Nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
                 tf_ApMat.getText()+"', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"', FechaNac = '"+
@@ -209,6 +196,7 @@ public class EmpleadosController implements Initializable, Serializable {
         mostrarEmpleados();
     }
 
+    @FXML
     private void bajaEmpleados(){
         String query = "DELETE FROM empleados WHERE CodigoEmpleado= "+tf_ID.getText()+"";
         executeQuery(query);

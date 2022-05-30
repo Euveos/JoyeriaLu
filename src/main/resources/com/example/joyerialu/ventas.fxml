@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #A29E9E;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.joyerialu.VentasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #A29E9E;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.joyerialu.VentasController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="186.0" layoutX="14.0" layoutY="14.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1248.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="47.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
@@ -25,7 +17,7 @@
       </ImageView>
       <Label layoutX="238.0" layoutY="28.0" text="LU JEWERLY">
          <font>
-            <Font name="Century Gothic Bold" size="44.0" />
+            <Font name="Lucida Bright" size="44.0" />
          </font>
       </Label>
       <Label layoutX="324.0" layoutY="85.0" text="Direccion">
@@ -146,15 +138,7 @@
                   <Font name="Century Gothic" size="24.0" />
                </font>
             </Label>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #5f5d5d;" text="BUSCAR" GridPane.columnIndex="2">
-               <font>
-                  <Font name="Century Gothic Bold" size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-            </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #5f5d5d;" text="BUSCAR" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #5f5d5d;" text="AÑADIR" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>

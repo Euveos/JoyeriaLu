@@ -1,5 +1,8 @@
 package com.example.joyerialu;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class ObjetoEmpleados {
     public int getId() {
         return id;
@@ -17,7 +20,7 @@ public class ObjetoEmpleados {
         return apmat;
     }
 
-    public String getFecnac() {
+    public LocalDate getFecnac() {
         return fecnac;
     }
 
@@ -37,7 +40,7 @@ public class ObjetoEmpleados {
         return direccion;
     }
 
-    public String getFecreg() {
+    public LocalDate getFecreg() {
         return fecreg;
     }
 
@@ -45,14 +48,14 @@ public class ObjetoEmpleados {
     private String nombres;
     private String appat;
     private String apmat;
-    private String fecnac;
+    private LocalDate fecnac;
     private String telefono;
     private String correo;
     private String rfc;
     private String direccion;
-    private String fecreg;
+    private LocalDate fecreg;
 
-    public ObjetoEmpleados(int id, String nombres, String appat, String apmat, String fecnac, String telefono, String correo, String rfc, String direccion, String fecreg) {
+    public ObjetoEmpleados(int id, String nombres, String appat, String apmat, LocalDate fecnac, String telefono, String correo, String rfc, String direccion, LocalDate fecreg) {
         this.id = id;
         this.nombres = nombres;
         this.appat = appat;

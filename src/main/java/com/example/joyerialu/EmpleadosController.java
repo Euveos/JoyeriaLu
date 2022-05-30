@@ -8,18 +8,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EmpleadosController implements Initializable, Serializable {
@@ -79,7 +78,7 @@ public class EmpleadosController implements Initializable, Serializable {
     private TextField tf_ApMat;
 
     @FXML
-    private TextField tf_FecNac;
+    private DatePicker dp_FecNac;
 
     @FXML
     private TextField tf_Telefono;
@@ -94,7 +93,7 @@ public class EmpleadosController implements Initializable, Serializable {
     private TextField tf_Direccion;
 
     @FXML
-    private TextField tf_FecReg;
+    private DatePicker dp_FecReg;
 
     @FXML
     private TableView<ObjetoEmpleados> tv_empleados;
@@ -139,9 +138,9 @@ public class EmpleadosController implements Initializable, Serializable {
             ObjetoEmpleados empleados;
             while(rs.next()){
                 empleados = new ObjetoEmpleados(rs.getInt("CodigoEmpleado"), rs.getString("Nombre"),
-                        rs.getString("PrimerApellido"),rs.getString("ApellidoMaterno"),rs.getString("FechaNac"),
+                        rs.getString("PrimerApellido"),rs.getString("ApellidoMaterno"),rs.getDate("FechaNac").toLocalDate(),
                         rs.getString("Telefono"),rs.getString("CorreoE"),rs.getString("RFC"),rs.getString("Direccion"),
-                        rs.getString("FechaRegistro"));
+                        rs.getDate("FechaRegistro").toLocalDate());
                 listaEmpleados.add(empleados);
             }
         }catch (Exception e){
@@ -170,8 +169,8 @@ public class EmpleadosController implements Initializable, Serializable {
     @FXML
     private void altaEmpleados(){
         String query = "INSERT INTO empleados VALUES ("+tf_ID.getText()+", '"+tf_Nombres.getText()+"','"+tf_ApPat.getText()+"','"+
-                tf_ApMat.getText()+"','"+tf_Direccion.getText()+"','"+tf_Telefono.getText()+"','"+tf_FecNac.getText()+"','"+
-                tf_FecReg.getText()+"','"+tf_RFC.getText()+"','"+tf_Correo.getText()+"')";
+                tf_ApMat.getText()+"','"+tf_Direccion.getText()+"','"+tf_Telefono.getText()+"','"+dp_FecNac.getValue().toString()+"','"+
+                dp_FecReg.getValue().toString()+"','"+tf_RFC.getText()+"','"+tf_Correo.getText()+"')";
         executeQuery(query);
         mostrarEmpleados();
     }
@@ -180,7 +179,7 @@ public class EmpleadosController implements Initializable, Serializable {
     private void modificarEmpleados(){
         String query = "UPDATE empleados SET CodigoEmpleado = "+tf_ID.getText()+", Nombre = '"+tf_Nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
                 tf_ApMat.getText()+"', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"', FechaNac = '"+
-                tf_FecNac.getText()+"', FechaRegistro = '"+tf_FecReg+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"'";
+                dp_FecNac.getValue().toString()+"', FechaRegistro = '"+dp_FecReg.getValue().toString()+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"'";
         executeQuery(query);
         mostrarEmpleados();
     }
@@ -190,6 +189,16 @@ public class EmpleadosController implements Initializable, Serializable {
         String query = "DELETE FROM empleados WHERE CodigoEmpleado= "+tf_ID.getText()+"";
         executeQuery(query);
         mostrarEmpleados();
+    }
+
+    @FXML
+    private void getFechaNacimiento(ActionEvent event){
+        LocalDate miFecha = dp_FecNac.getValue();
+    }
+
+    @FXML
+    private void getFecha(ActionEvent event){
+        LocalDate miFecha = dp_FecReg.getValue();
     }
 
     @FXML
@@ -203,8 +212,8 @@ public class EmpleadosController implements Initializable, Serializable {
         tf_Telefono.setText(empleado.getTelefono());
         tf_Correo.setText(empleado.getCorreo());
         tf_RFC.setText(empleado.getRfc());
-        tf_FecNac.setText(empleado.getFecnac());
-        tf_FecReg.setText(empleado.getFecreg());
+        dp_FecNac.setValue(empleado.getFecnac());
+        dp_FecReg.setValue(empleado.getFecreg());
     }
 
     private void executeQuery(String query){

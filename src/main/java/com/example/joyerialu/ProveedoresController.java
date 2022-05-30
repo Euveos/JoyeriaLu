@@ -91,20 +91,9 @@ public class ProveedoresController implements Initializable, Serializable {
         mostrarProveedores();
     }
 
-    public Connection getConnection(){
-        Connection conn;
-        try{
-            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/joyeria","root","");
-            return conn;
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-            return null;
-        }
-    }
-
     public ObservableList<ObjetoProveedores> getProveedoresList(){
         ObservableList<ObjetoProveedores> listaProveedores = FXCollections.observableArrayList();
-        Connection conn = getConnection();
+        Connection conn = DbConnect.getConnection();
         String query="SELECT * FROM proveedores";
         Statement st;
         ResultSet rs;
@@ -167,7 +156,7 @@ public class ProveedoresController implements Initializable, Serializable {
     }
 
     private void executeQuery(String query){
-        Connection conn = getConnection();
+        Connection conn = DbConnect.getConnection();
         Statement st;
         try{
             st = conn.createStatement();

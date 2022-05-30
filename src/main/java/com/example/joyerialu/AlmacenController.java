@@ -27,6 +27,8 @@ import java.util.ResourceBundle;
 
 public class AlmacenController implements Initializable, Serializable {
 
+
+
     @FXML
     private Button btn_BajaProductos;
 
@@ -100,20 +102,9 @@ public class AlmacenController implements Initializable, Serializable {
         mostrarProductos();
     }
 
-    public Connection getConnection(){
-        Connection conn;
-        try{
-            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/joyeria","root","");
-            return conn;
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-            return null;
-        }
-    }
-
     public ObservableList<ObjetoAlmacen> getProductosList(){
         ObservableList<ObjetoAlmacen> listaProductos = FXCollections.observableArrayList();
-        Connection conn = getConnection();
+        Connection conn = DbConnect.getConnection();
         String query="SELECT * FROM productos";
         Statement st;
         ResultSet rs;
@@ -178,7 +169,7 @@ public class AlmacenController implements Initializable, Serializable {
     }
 
     private void executeQuery(String query){
-        Connection conn = getConnection();
+        Connection conn = DbConnect.getConnection();
         Statement st;
         try{
             st = conn.createStatement();

@@ -126,20 +126,9 @@ public class EmpleadosController implements Initializable, Serializable {
         mostrarEmpleados();
     }
 
-    public Connection getConnection(){
-        Connection conn;
-        try{
-            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/joyeria","root","");
-            return conn;
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
-            return null;
-        }
-    }
-
     public ObservableList<ObjetoEmpleados> getEmpleadosList(){
         ObservableList<ObjetoEmpleados> listaEmpleados = FXCollections.observableArrayList();
-        Connection conn = getConnection();
+        Connection conn = DbConnect.getConnection();
         String query="SELECT * FROM empleados";
         Statement st;
         ResultSet rs;
@@ -219,7 +208,7 @@ public class EmpleadosController implements Initializable, Serializable {
     }
 
     private void executeQuery(String query){
-        Connection conn = getConnection();
+        Connection conn = DbConnect.getConnection();
         Statement st;
         try{
             st = conn.createStatement();

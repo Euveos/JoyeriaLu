@@ -18,7 +18,6 @@ import java.io.Serializable;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class VentasController implements Initializable, Serializable {
@@ -33,17 +32,17 @@ public class VentasController implements Initializable, Serializable {
     @FXML
     private Button btn_clear;
     @FXML
-    private TableColumn<ObjetoAlmacen,Integer> tc_codigo;
+    private TableColumn<ObjetoCarrito,Integer> tc_codigo;
     @FXML
-    private TableColumn<ObjetoAlmacen,String> tc_producto;
+    private TableColumn<ObjetoCarrito,String> tc_producto;
     @FXML
-    private TableColumn<ObjetoAlmacen,Integer> tc_cantidad;
+    private TableColumn<ObjetoCarrito, Integer> tc_cantidad;
     @FXML
-    private TableColumn<ObjetoAlmacen,Double> tc_precio;
+    private TableColumn<ObjetoCarrito,Double> tc_precio;
     @FXML
     private DatePicker dp_fecha;
     @FXML
-    private TableView<ObjetoAlmacen> tv_ventas;
+    private TableView<ObjetoCarrito> tv_ventas;
     @FXML
     private TextField tf_total;
     @FXML
@@ -55,11 +54,14 @@ public class VentasController implements Initializable, Serializable {
     @FXML
     private TextField tf_factura;
 
+    //Valor del total monetario de la venta
     double cantidadTotal = 0.00;
-    ObjetoAlmacen registroSeleccionado = null;
-    ObservableList<ObjetoAlmacen> listaProductos = FXCollections.observableArrayList();
+    //ObjetoCarrito usado para el borrado de datos de la tabla
+    ObjetoCarrito registroSeleccionado = null;
+    //Lista de los objetos que almacenan los productos ingresados al carrito, junto con el id del producto y la cantidad de éste
     ObservableList<ObjetoCarrito> listaCarrito = FXCollections.observableArrayList();
 
+    //Método que permite el regreso a la vista del menú
     public void regresar(){
         try {
 
@@ -82,6 +84,7 @@ public class VentasController implements Initializable, Serializable {
         }
     }
 
+    //Método que permite generar cuadros de alerta para notificaciones al usuario
     private void generarAlerta(String razon, String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.WARNING);
         alerta.setHeaderText(null);
@@ -90,18 +93,41 @@ public class VentasController implements Initializable, Serializable {
         alerta.showAndWait();
     }
 
+    //Método para agregado de productos al carrito
     @FXML
     private void addProductos(){
+
+        //Condición en caso de que se presione agregar sin que exista un valor dentro del campo de código de productos
         if(!"".equals(tf_codProd.getText())){
             try {
+                //Cantidad de elementos a agregar al carrito
+                if(tf_cantidad.equals("")){
+                    generarAlerta("No se ingresó cantidad", "No ha ingresado un valor numérico dentro del campo de cantidades");
+                }
+                //Se almacena la cantidad del producto en una variable
                 int cantidad = Integer.parseInt(tf_cantidad.getText());
-                int existencias = 0;
+                //Variable que representará el stock dentro de la tabla de productos
+                int existencias;
 
+                //Verificación para evitar duplicidad en los productos guardados
+                int index = listaCarrito.size();
+                for(int i=0;i<index;i++){
+                    if(tf_codProd.getText().equals(listaCarrito.get(i).getIdProducto())){
+                        generarAlerta("Error en adición de producto","Este producto ya se encuentra dentro del carrito.");
+                        return;
+                    }
+                }
+
+                //Llamado a la conexión
                 Connection conn = DbConnect.getConnection();
+                //Query para la selección del producto seleccionado
                 PreparedStatement ps = conn.prepareStatement("SELECT * FROM productos WHERE CodigoProducto=? ");
-                ps.setString(1,tf_codProd.getText());
+                //Se define el valor del código del producto dentro del query
+                ps.setInt(1, Integer.parseInt(tf_codProd.getText()));
                 ResultSet rs = ps.executeQuery();
 
+                //Condición para verificar si se encontró un resultado. De ser así,
+                //almacena el valor del stock en la variable
                 if(rs.next()){
                     existencias = rs.getInt("Stock");
                 } else {
@@ -109,17 +135,19 @@ public class VentasController implements Initializable, Serializable {
                     return;
                 }
 
+                //Comprobación de que hay cantidades suficientes para la venta
                 if(existencias>=cantidad){
-                    ObjetoAlmacen productos;
-                    productos = new ObjetoAlmacen(rs.getInt("CodigoProducto"), rs.getString("NombreProducto"),
+                    //Se genera un nuevo producto almacen para guardar los valores del objeto
+                    ObjetoAlmacen productos = new ObjetoAlmacen(rs.getInt("CodigoProducto"), rs.getString("NombreProducto"),
                             rs.getDouble("PrecioUnitario"),rs.getString("Descripcion"),rs.getInt("Stock"));
-                    listaCarrito.add(new ObjetoCarrito(productos.getId(), cantidad, productos));
+                    //Se agrega el objeto a la lista del carrito y se despliega en la tabla
+                    listaCarrito.add(new ObjetoCarrito(productos.getNombre(), productos.getId(), cantidad, productos.getPrecio()));
                     mostrarProductos(listaCarrito);
                 } else {
                     generarAlerta("Cantidad Insuficiente","El producto solicitado no se tiene existencias suficientes.");
                 }
 
-
+                //Se actualiza el valor del total monetario y se limpian los campos de cantidad y código de producto
                 actualizarTotal();
                 tf_codProd.clear();
                 tf_cantidad.clear();
@@ -129,25 +157,25 @@ public class VentasController implements Initializable, Serializable {
         }
     }
 
+    //Método para eliminar productos de la tabla y la lista de carrito
     @FXML
     private void removeProductos(){
-        int index = listaCarrito.size();
-        for(int i = 0; i<index;i++){
-            if(listaCarrito.get(i).getProducto().equals(registroSeleccionado)){
-                listaCarrito.remove(i);
-            }
-        }
+        listaCarrito.remove(registroSeleccionado);
+        //Se actualiza la tabla y el total
         mostrarProductos(listaCarrito);
         actualizarTotal();
     }
 
+    //Método ejecutado al presionar el botón de Finalizar Venta
     @FXML
     private void finalizarVenta(){
+        //En caso de encontrarse vacío el carrito, se arroja un error.
         if (listaCarrito.isEmpty()){
             generarAlerta("Carrito vacío", "No ha seleccionado ningún producto para la venta,");
         }
         else {
             try {
+                //Se genera la conexión y se inserta en la tabla de ventas los valores del empleado, la fecha y el total de la venta
                 Connection conn = DbConnect.getConnection();
                 PreparedStatement ps = conn.prepareStatement("INSERT INTO ventas (CodigoEmpleado,Fecha,TotalVenta) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
                 ps.setInt(1, Integer.parseInt(tf_codEmp.getText()));
@@ -155,14 +183,18 @@ public class VentasController implements Initializable, Serializable {
                 ps.setDouble(3, Double.parseDouble(tf_total.getText()));
                 ps.executeUpdate();
 
+                //Se verifica si se registró el resultado dentro de la tabla
                 ResultSet resultado = ps.getGeneratedKeys();
                 resultado.next();
                 int idVenta = resultado.getInt(1);
 
+                //De no haberse registrado, se arrojará un error advirtiendo que no se pudo almacenar la venta en la tabla
                 if(idVenta==0){
                     generarAlerta("Error", "Ocurrió un error al guardar la venta.");
                     return;
                 }
+
+                //En caso de que progresara correctamente, se ejecuta la actualización de la tabla ficticia enviando el id de la venta
                 actualizarTablaFicticia(idVenta);
 
             } catch (Exception e){
@@ -171,18 +203,21 @@ public class VentasController implements Initializable, Serializable {
         }
     }
 
+    //Método para actualizar la tabla ficticia relacionando código de producto, código de venta y cantidad de producto
     private void actualizarTablaFicticia(int idVenta){
             int index = listaCarrito.size();
             Connection conn = DbConnect.getConnection();
 
             for(int i=0; i>index;i++){
                 try{
+                    //Se inserta dentro de la tabla ficticia los valores necesarios
                     PreparedStatement ps = conn.prepareStatement("INSERT INTO productosventas (CodigoProducto, CodigoVenta, CantidadProducto) VALUES (?,?,?)");
                     ps.setInt(1,listaCarrito.get(i).getIdProducto());
                     ps.setInt(2,idVenta);
                     ps.setInt(3,listaCarrito.get(i).getCantidad());
                     ps.executeUpdate();
 
+                    //Se actualizan los nuevos valores de Stock dentro de la tabla de productos
                     PreparedStatement pp = conn.prepareStatement("UPDATE productos SET Stock = (Stock - ?) WHERE CodigoProducto = ?");
                     pp.setInt(1,listaCarrito.get(i).getCantidad());
                     pp.setInt(2, listaCarrito.get(i).getIdProducto());
@@ -192,19 +227,26 @@ public class VentasController implements Initializable, Serializable {
                     generarAlerta("Error",e.getMessage());
                 }
             }
+
+            //Una vez se realizó correctamente, limpia todos los campos y la tabla
             limpiarTodo();
+            //Se actualiza el número de la factura
+            numeroFactura();
     }
 
+    //Se guarda el ObjetoCarrito seleccionado en la tabla
     @FXML
     private void seleccionRegistro(MouseEvent event){
         registroSeleccionado = tv_ventas.getSelectionModel().getSelectedItem();
     }
 
+    //Método para el despliegue de la fecha dentro de la vista
     @FXML
     private void getFecha(ActionEvent event){
         LocalDate miFecha = dp_fecha.getValue();
     }
 
+    //Método de limpieza de campos y borrado de datos
     @FXML
     private void limpiarTodo(){
         cantidadTotal=0.00;
@@ -217,6 +259,7 @@ public class VentasController implements Initializable, Serializable {
         mostrarProductos(listaCarrito);
     }
 
+    //Método para la actualización del valor total
     private void actualizarTotal(){
         int numeroFilas = tv_ventas.getItems().size();
         for(int i = 0; i<numeroFilas;i++){
@@ -225,23 +268,33 @@ public class VentasController implements Initializable, Serializable {
         tf_total.setText(String.format("%.2f",cantidadTotal));
     }
 
+    //Método para el despliegue de datos
     public void mostrarProductos(ObservableList<ObjetoCarrito> carrito){
-        listaProductos.clear();
-
-        int largo = carrito.size();
-        for(int i=0;i<largo;i++){
-            listaProductos.add(carrito.get(i).getProducto());
-        }
-
-        tc_codigo.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("id"));
-        tc_producto.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,String>("nombre"));
-        tc_precio.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Double>("precio"));
-        tc_cantidad.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("stock"));
-        tv_ventas.setItems(listaProductos);
+        tc_codigo.setCellValueFactory(new PropertyValueFactory<ObjetoCarrito,Integer>("idProducto"));
+        tc_producto.setCellValueFactory(new PropertyValueFactory<ObjetoCarrito,String>("nombreProducto"));
+        tc_precio.setCellValueFactory(new PropertyValueFactory<ObjetoCarrito,Double>("precio"));
+        tc_cantidad.setCellValueFactory(new PropertyValueFactory<ObjetoCarrito,Integer>("cantidad"));
+        tv_ventas.setItems(carrito);
     }
 
+    //Metodo para la inserción automática del número de factura correspondiente
+    public void numeroFactura(){
+        try{
+            //Llamado a la conexión
+            Connection conn = DbConnect.getConnection();
+            //Query para la selección del producto seleccionado
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM ventas",Statement.RETURN_GENERATED_KEYS);
+            ResultSet resultado = ps.getGeneratedKeys();
+            resultado.next();
+            int idVenta = resultado.getInt(1)+1;
+            tf_factura.setText(""+idVenta);
+        } catch(Exception e){
+            generarAlerta("Error al obtener número de factura", e.getMessage());
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        numeroFactura();
     }
 }

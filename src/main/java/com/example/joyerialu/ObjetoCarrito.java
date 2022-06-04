@@ -1,14 +1,16 @@
 package com.example.joyerialu;
 
 public class ObjetoCarrito {
-    private ObjetoAlmacen producto;
+    private String nombreProducto;
     private int idProducto;
     private int cantidad;
+    private double precio;
 
-    public ObjetoCarrito(int idProducto, int cantidad, ObjetoAlmacen producto) {
+    public ObjetoCarrito(String nombreProducto, int idProducto, int cantidad, double precio) {
+        this.nombreProducto=nombreProducto;
         this.idProducto = idProducto;
         this.cantidad = cantidad;
-        this.producto = producto;
+        this.precio = precio;
     }
 
     public int getIdProducto() {
@@ -19,7 +21,11 @@ public class ObjetoCarrito {
         return cantidad;
     }
 
-    public ObjetoAlmacen getProducto() {
-        return producto;
+    public String getNombreProducto() {
+        return nombreProducto;
+    }
+
+    public double getPrecio() {
+        return precio;
     }
 }

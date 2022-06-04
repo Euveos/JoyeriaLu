@@ -48,7 +48,7 @@ public class AlmacenController implements Initializable, Serializable {
     private TableColumn<ObjetoAlmacen, String> tc_Nombre;
 
     @FXML
-    private TableColumn<ObjetoAlmacen, Integer> tc_Precio;
+    private TableColumn<ObjetoAlmacen, Double> tc_Precio;
 
     @FXML
     private TableColumn<ObjetoAlmacen, String> tc_Descripcion;
@@ -115,7 +115,7 @@ public class AlmacenController implements Initializable, Serializable {
             ObjetoAlmacen productos;
             while(rs.next()){
                 productos = new ObjetoAlmacen(rs.getInt("CodigoProducto"), rs.getString("NombreProducto"),
-                        rs.getInt("PrecioUnitario"),rs.getString("Descripcion"),rs.getInt("Stock"));
+                        rs.getDouble("PrecioUnitario"),rs.getString("Descripcion"),rs.getInt("Stock"));
                 listaProductos.add(productos);
             }
         }catch (Exception e){
@@ -129,7 +129,7 @@ public class AlmacenController implements Initializable, Serializable {
 
         tc_Codigo.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("id"));
         tc_Nombre.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,String>("nombre"));
-        tc_Precio.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("precio"));
+        tc_Precio.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Double>("precio"));
         tc_Descripcion.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,String>("descripcion"));
         tc_Stock.setCellValueFactory(new PropertyValueFactory<ObjetoAlmacen,Integer>("stock"));
 

@@ -22,43 +22,43 @@
       </Label>
       <Label layoutX="324.0" layoutY="85.0" text="Direccion">
          <font>
-            <Font name="Century Gothic" size="21.0" />
+            <Font name="Lucida Bright" size="21.0" />
          </font>
       </Label>
       <Label layoutX="324.0" layoutY="107.0" text="Cod. Postal">
          <font>
-            <Font name="Century Gothic" size="21.0" />
+            <Font name="Lucida Bright" size="21.0" />
          </font>
       </Label>
       <Label layoutX="324.0" layoutY="131.0" text="Teléfono">
          <font>
-            <Font name="Century Gothic" size="21.0" />
+            <Font name="Lucida Bright" size="21.0" />
          </font>
       </Label>
       <Label layoutX="324.0" layoutY="154.0" text="Email">
          <font>
-            <Font name="Century Gothic" size="21.0" />
+            <Font name="Lucida Bright" size="21.0" />
          </font>
       </Label>
       <Button fx:id="btn_Regresar" layoutX="1057.0" layoutY="34.0" mnemonicParsing="false" onAction="#regresar" prefHeight="52.0" prefWidth="167.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="REGRESAR" textFill="#faf9f9">
          <font>
-            <Font name="Century Gothic" size="24.0" />
+            <Font name="Lucida Bright" size="21.0" />
          </font>
       </Button>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5f5d5d" height="52.0" layoutX="650.0" layoutY="49.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="204.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c1c6ca" height="66.0" layoutX="649.0" layoutY="88.0" stroke="#c1c6ca" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="205.0" />
       <Label layoutX="703.0" layoutY="52.0" text="FACTURA">
          <font>
-            <Font name="Century Gothic Bold" size="23.0" />
+            <Font name="Lucida Bright" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="num_factura" layoutX="781.0" layoutY="91.0" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: #c1c6ca;">
+      <TextField fx:id="tf_factura" layoutX="781.0" layoutY="91.0" prefHeight="32.0" prefWidth="63.0" style="-fx-background-color: #c1c6ca;">
          <font>
-            <Font name="Century Gothic" size="16.0" />
+            <Font name="Lucida Bright" size="16.0" />
          </font>
       </TextField>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="228.0" layoutX="16.0" layoutY="207.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1248.0" />
-      <GridPane layoutX="49.0" layoutY="208.0" prefHeight="222.0" prefWidth="1210.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="160.0" layoutX="16.0" layoutY="207.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="1248.0" />
+      <GridPane layoutX="38.0" layoutY="208.0" prefHeight="160.0" prefWidth="1202.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0000366210937" minWidth="10.0" prefWidth="206.39996032714845" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="533.6000274658204" minWidth="0.0" prefWidth="319.6" />
@@ -69,103 +69,92 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Cod. Empleado:">
                <font>
-                  <Font name="Century Gothic" size="24.0" />
+                  <Font name="Lucida Bright" size="24.0" />
                </font>
             </Label>
             <Label text="Cod. Producto:" GridPane.rowIndex="1">
                <font>
-                  <Font name="Century Gothic" size="24.0" />
+                  <Font name="Lucida Bright" size="24.0" />
                </font>
             </Label>
-            <Label text="Precio:" GridPane.rowIndex="2">
+            <Label text="Cantidad:" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
-                  <Font name="Century Gothic" size="24.0" />
+                  <Font name="Lucida Bright" size="24.0" />
                </font>
             </Label>
-            <Label text="Cantidad:" GridPane.rowIndex="3">
+            <TextField fx:id="tf_codEmp" prefHeight="32.0" prefWidth="310.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1">
                <font>
-                  <Font name="Century Gothic" size="24.0" />
-               </font>
-            </Label>
-            <TextField fx:id="num_factura1" prefHeight="32.0" prefWidth="310.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1">
-               <font>
-                  <Font name="Century Gothic" size="16.0" />
+                  <Font name="Lucida Bright" size="24.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura11" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="tf_codProd" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font name="Century Gothic" size="16.0" />
+                  <Font name="Lucida Bright" size="24.0" />
                </font>
             </TextField>
-            <TextField fx:id="num_factura12" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="tf_cantidad" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <font>
-                  <Font name="Century Gothic" size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="num_factura13" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Century Gothic" size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="num_factura14" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="4">
-               <font>
-                  <Font name="Century Gothic" size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="num_factura142" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Century Gothic" size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="num_factura1421" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Century Gothic" size="16.0" />
+                  <Font name="Lucida Bright" size="24.0" />
                </font>
             </TextField>
             <Label text="Fecha:" GridPane.columnIndex="3">
                <font>
-                  <Font name="Century Gothic" size="24.0" />
+                  <Font name="Lucida Bright" size="24.0" />
                </font>
             </Label>
-            <Label text="Nom. Producto:" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Button fx:id="btn_add" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addProductos" prefHeight="39.0" prefWidth="133.0" style="-fx-background-color: #5f5d5d;" text="AÑADIR" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
-                  <Font name="Century Gothic" size="24.0" />
-               </font>
-            </Label>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #5f5d5d;" text="AÑADIR" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Century Gothic Bold" size="20.0" />
+                  <Font name="Lucida Bright" size="20.0" />
                </font>
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
             </Button>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="44.0" prefWidth="154.0" style="-fx-background-color: #5f5d5d;" text="IMPRIMIR" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <Button fx:id="btn_remove" alignment="CENTER" contentDisplay="CENTER" layoutX="500.0" layoutY="88.0" mnemonicParsing="false" onAction="#removeProductos" prefHeight="39.0" prefWidth="129.0" style="-fx-background-color: #5f5d5d;" text="ELIMINAR" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <font>
-                  <Font name="Century Gothic Bold" size="20.0" />
+                  <Font name="Lucida Bright" size="20.0" />
                </font>
-               <GridPane.margin>
-                  <Insets left="150.0" />
-               </GridPane.margin>
             </Button>
+            <DatePicker fx:id="dp_fecha" onAction="#getFecha" prefHeight="47.0" prefWidth="310.0" GridPane.columnIndex="4" />
          </children>
       </GridPane>
-      <TableView layoutX="15.0" layoutY="443.0" prefHeight="338.0" prefWidth="1251.0" style="-fx-background-color: #c1c6ca;">
+      <TableView fx:id="tv_ventas" layoutX="16.0" layoutY="374.0" onMouseClicked="#seleccionRegistro" prefHeight="338.0" prefWidth="1248.0" style="-fx-background-color: #c1c6ca;">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="tc_codigo" prefWidth="97.0" text="CODIGO" />
+          <TableColumn fx:id="tc_producto" minWidth="0.0" prefWidth="485.0" text="PRODUCTO" />
+            <TableColumn fx:id="tc_cantidad" prefWidth="408.0" text="CANTIDAD" />
+            <TableColumn fx:id="tc_precio" prefWidth="260.0" text="PRECIO" />
         </columns>
       </TableView>
       <Label layoutX="661.0" layoutY="94.0" text="No. Factura:" wrapText="true">
          <font>
-            <Font name="Century Gothic" size="19.0" />
+            <Font name="Lucida Bright" size="20.0" />
          </font>
       </Label>
+      <Button fx:id="btn_finventa" contentDisplay="CENTER" layoutX="719.0" layoutY="741.0" mnemonicParsing="false" onAction="#finalizarVenta" prefHeight="44.0" prefWidth="224.0" style="-fx-background-color: #5f5d5d;" text="FINALIZAR VENTA" wrapText="true">
+         <font>
+            <Font name="Lucida Bright" size="20.0" />
+         </font>
+      </Button>
+      <Label layoutX="990.0" layoutY="749.0" text="Total:">
+         <font>
+            <Font name="Lucida Bright" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_total" editable="false" layoutX="1064.0" layoutY="741.0" prefHeight="44.0" prefWidth="198.0" style="-fx-background-color: #c1c6ca;">
+         <font>
+            <Font name="Lucida Bright" size="24.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btn_clear" contentDisplay="CENTER" layoutX="472.0" layoutY="741.0" mnemonicParsing="false" onAction="#limpiarTodo" prefHeight="44.0" prefWidth="224.0" style="-fx-background-color: #5f5d5d;" text="NUEVA VENTA" wrapText="true">
+         <font>
+            <Font name="Lucida Bright" size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

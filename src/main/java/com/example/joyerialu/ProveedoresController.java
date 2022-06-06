@@ -138,8 +138,8 @@ public class ProveedoresController implements Initializable, Serializable {
 
     @FXML
     private void modificarProveedores(ActionEvent event){
-        String query = "UPDATE proveedores SET IdProveedor = "+tf_ID.getText()+", Nombre = '"+tf_Nombre.getText()+
-                "', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"'";
+        String query = "UPDATE proveedores SET Nombre = '"+tf_Nombre.getText()+
+                "', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"' WHERE IdProveedor="+tf_ID.getText();
         executeQuery(query);
         mostrarProveedores();
         limpiar();

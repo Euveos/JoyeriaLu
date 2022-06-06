@@ -151,8 +151,8 @@ public class AlmacenController implements Initializable, Serializable {
 
     @FXML
     private void modificarProductos(ActionEvent event){
-        String query = "UPDATE productos SET CodigoProducto = "+tf_Codigo.getText()+", NombreProducto = '"+tf_Nombre.getText()+
-                "', PrecioUnitario = "+tf_Precio.getText()+", Descripcion = '"+tf_Descripcion.getText()+"', Stock = "+tf_Stock.getText()+"";
+        String query = "UPDATE productos SET NombreProducto = '"+tf_Nombre.getText()+
+                "', PrecioUnitario = "+tf_Precio.getText()+", Descripcion = '"+tf_Descripcion.getText()+"', Stock = "+tf_Stock.getText()+" WHERE CodigoProducto="+tf_Codigo.getText();
         executeQuery(query);
         mostrarProductos();
         limpiar();

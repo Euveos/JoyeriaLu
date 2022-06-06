@@ -191,9 +191,9 @@ public class EmpleadosController implements Initializable, Serializable {
 
     @FXML
     private void modificarEmpleados(){
-        String query = "UPDATE empleados SET CodigoEmpleado = "+tf_ID.getText()+", Nombre = '"+tf_Nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
+        String query = "UPDATE empleados SET Nombre = '"+tf_Nombres.getText()+"', PrimerApellido = '"+tf_ApPat.getText()+"', ApellidoMaterno = '"+
                 tf_ApMat.getText()+"', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"', FechaNac = '"+
-                dp_FecNac.getValue().toString()+"', FechaRegistro = '"+dp_FecReg.getValue().toString()+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"'";
+                dp_FecNac.getValue().toString()+"', FechaRegistro = '"+dp_FecReg.getValue().toString()+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"' WHERE CodigoEmpleado="+tf_ID.getText();
         executeQuery(query);
         mostrarEmpleados();
         limpiar();

@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -186,25 +187,15 @@ public class VentasController implements Initializable, Serializable {
             try {
                 //Se genera la conexión y se inserta en la tabla de ventas los valores del empleado, la fecha y el total de la venta
                 Connection conn = DbConnect.getConnection();
-                PreparedStatement ps = conn.prepareStatement("INSERT INTO ventas (CodigoEmpleado,Fecha,TotalVenta) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement ps = conn.prepareStatement("INSERT INTO ventas (CodigoEmpleado,Fecha,TotalVenta,NumeroFactura) VALUES (?,?,?,?)");
                 ps.setInt(1, Integer.parseInt(tf_codEmp.getText()));
                 ps.setDate(2, Date.valueOf(dp_fecha.getValue()));
                 ps.setDouble(3, Double.parseDouble(tf_total.getText()));
+                ps.setInt(4,Integer.parseInt(tf_factura.getText()));
                 ps.executeUpdate();
 
-                //Se verifica si se registró el resultado dentro de la tabla
-                ResultSet resultado = ps.getGeneratedKeys();
-                resultado.next();
-                int idVenta = resultado.getInt(1);
-
-                //De no haberse registrado, se arrojará un error advirtiendo que no se pudo almacenar la venta en la tabla
-                if(idVenta==0){
-                    generarAlerta("Error", "Ocurrió un error al guardar la venta.");
-                    return;
-                }
-
-                //En caso de que progresara correctamente, se ejecuta la actualización de la tabla ficticia enviando el id de la venta
-                actualizarTablaFicticia(idVenta);
+                //En caso de que progresara correctamente, se ejecuta la actualización de la tabla ficticia
+                actualizarTablaFicticia();
                 limpiar();
                 numeroFactura();
             } catch (Exception e){
@@ -214,16 +205,16 @@ public class VentasController implements Initializable, Serializable {
     }
 
     //Método para actualizar la tabla ficticia relacionando código de producto, código de venta y cantidad de producto
-    private void actualizarTablaFicticia(int idVenta){
+    private void actualizarTablaFicticia(){
             int index = listaCarrito.size();
             Connection conn = DbConnect.getConnection();
 
-            for(int i=0; i>index;i++){
+            for(int i=0; i<index;i++){
                 try{
                     //Se inserta dentro de la tabla ficticia los valores necesarios
                     PreparedStatement ps = conn.prepareStatement("INSERT INTO productosventas (CodigoProducto, CodigoVenta, CantidadProducto) VALUES (?,?,?)");
                     ps.setInt(1,listaCarrito.get(i).getIdProducto());
-                    ps.setInt(2,idVenta);
+                    ps.setInt(2,Integer.parseInt(tf_factura.getText()));
                     ps.setInt(3,listaCarrito.get(i).getCantidad());
                     ps.executeUpdate();
 

@@ -161,7 +161,10 @@
                <font>
                   <Font name="Lucida Bright" size="19.0" />
                </font></TextField>
-                 <TextField fx:id="tf_RFC" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                 <TextField fx:id="tf_RFC" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Lucida Bright" size="19.0" />
+               </font></TextField>
             <DatePicker fx:id="dp_FecNac" onAction="#getFechaNacimiento" prefHeight="45.0" prefWidth="240.0" promptText="Ingrese una fecha" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <DatePicker fx:id="dp_FecReg" layoutX="169.0" layoutY="225.0" onAction="#getFecha" prefHeight="45.0" prefWidth="240.0" promptText="Ingrese una fecha" GridPane.columnIndex="1" GridPane.rowIndex="9" />
            </children>

@@ -95,7 +95,7 @@
          </children>
       </GridPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="97.0" layoutX="16.0" layoutY="689.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="1248.0" />
-      <Button fx:id="btn_BajaEmpleados" layoutX="959.0" layoutY="712.0" mnemonicParsing="false" onAction="#bajaProveedores" prefHeight="52.0" prefWidth="294.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="BAJA DE EMPLEADOS" textFill="#faf9f9">
+      <Button fx:id="btn_BajaEmpleados" layoutX="959.0" layoutY="712.0" mnemonicParsing="false" onAction="#bajaProveedores" prefHeight="52.0" prefWidth="294.0" style="-fx-background-radius: 10; -fx-background-color: #000000;" text="BAJA DE PROVEEDOR" textFill="#faf9f9">
          <font>
             <Font name="Century Gothic" size="24.0" />
          </font>

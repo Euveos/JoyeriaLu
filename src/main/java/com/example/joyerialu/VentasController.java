@@ -93,6 +93,14 @@ public class VentasController implements Initializable, Serializable {
         alerta.showAndWait();
     }
 
+    private void limpiar(){
+        tf_total.clear();
+        tf_codEmp.clear();
+        tf_codProd.clear();
+        tf_cantidad.clear();
+        tf_factura.clear();
+    }
+
     //Método para agregado de productos al carrito
     @FXML
     private void addProductos(){
@@ -196,7 +204,7 @@ public class VentasController implements Initializable, Serializable {
 
                 //En caso de que progresara correctamente, se ejecuta la actualización de la tabla ficticia enviando el id de la venta
                 actualizarTablaFicticia(idVenta);
-
+                limpiar();
             } catch (Exception e){
                 generarAlerta("Error",e.getMessage());
             }
@@ -261,9 +269,10 @@ public class VentasController implements Initializable, Serializable {
 
     //Método para la actualización del valor total
     private void actualizarTotal(){
+        cantidadTotal=0.00;
         int numeroFilas = tv_ventas.getItems().size();
         for(int i = 0; i<numeroFilas;i++){
-            cantidadTotal += tv_ventas.getItems().get(i).getPrecio();
+            cantidadTotal += tv_ventas.getItems().get(i).getPrecio() * tv_ventas.getItems().get(i).getCantidad();
         }
         tf_total.setText(String.format("%.2f",cantidadTotal));
     }
@@ -283,11 +292,11 @@ public class VentasController implements Initializable, Serializable {
             //Llamado a la conexión
             Connection conn = DbConnect.getConnection();
             //Query para la selección del producto seleccionado
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM ventas",Statement.RETURN_GENERATED_KEYS);
-            ResultSet resultado = ps.getGeneratedKeys();
+            Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet resultado = stmt.executeQuery("SELECT COUNT(*) FROM ventas");
             resultado.next();
-            int idVenta = resultado.getInt(1)+1;
-            tf_factura.setText(""+idVenta);
+            int cuenta = resultado.getInt(1)+1;
+            tf_factura.setText(""+cuenta);
         } catch(Exception e){
             generarAlerta("Error al obtener número de factura", e.getMessage());
         }

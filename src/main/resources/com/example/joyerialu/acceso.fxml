@@ -35,7 +35,7 @@
                </font>
             </Label>
             <TextField fx:id="txt_usuario" layoutX="24.0" layoutY="47.0" prefHeight="36.0" prefWidth="382.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;" />
-            <TextField fx:id="txt_pswrd" layoutX="25.0" layoutY="129.0" prefHeight="36.0" prefWidth="382.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;" />
+            <PasswordField fx:id="txt_pswrd" layoutX="25.0" layoutY="129.0" prefHeight="36.0" prefWidth="382.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;" />
             <Button fx:id="btn_ingresar" layoutX="165.0" layoutY="178.0" mnemonicParsing="false" onAction="#acceso" prefHeight="44.0" prefWidth="88.0" style="-fx-background-color: #000000FF; -fx-border-radius: 55;" text="Ingresar" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Lucida Bright" size="16.0" />

@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -86,6 +83,13 @@ public class ProveedoresController implements Initializable, Serializable {
         }
     }
 
+    public void limpiar(){
+        tf_ID.clear();
+        tf_Nombre.clear();
+        tf_Telefono.clear();
+        tf_Direccion.clear();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb){
         mostrarProveedores();
@@ -129,6 +133,7 @@ public class ProveedoresController implements Initializable, Serializable {
         String query = "INSERT INTO proveedores VALUES ("+tf_ID.getText()+", '"+tf_Nombre.getText()+"','"+tf_Direccion.getText()+"','"+tf_Telefono.getText()+"')";
         executeQuery(query);
         mostrarProveedores();
+        limpiar();
     }
 
     @FXML
@@ -137,6 +142,7 @@ public class ProveedoresController implements Initializable, Serializable {
                 "', Direccion = '"+tf_Direccion.getText()+"', Telefono = '"+tf_Telefono.getText()+"'";
         executeQuery(query);
         mostrarProveedores();
+        limpiar();
     }
 
     @FXML
@@ -144,6 +150,7 @@ public class ProveedoresController implements Initializable, Serializable {
         String query = "DELETE FROM proveedores WHERE IdProveedor= "+tf_ID.getText()+"";
         executeQuery(query);
         mostrarProveedores();
+        limpiar();
     }
 
     @FXML
@@ -162,7 +169,15 @@ public class ProveedoresController implements Initializable, Serializable {
             st = conn.createStatement();
             st.executeUpdate(query);
         }catch (Exception e){
-            e.printStackTrace();
+            generarAlerta("Error",e.getMessage());
         }
+    }
+
+    private void generarAlerta(String razon, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setHeaderText(null);
+        alerta.setTitle(razon);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }

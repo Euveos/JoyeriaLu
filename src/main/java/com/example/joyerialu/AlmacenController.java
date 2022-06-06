@@ -8,10 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -97,6 +94,14 @@ public class AlmacenController implements Initializable, Serializable {
         }
     }
 
+    public void limpiar(){
+        tf_Codigo.clear();
+        tf_Precio.clear();
+        tf_Descripcion.clear();
+        tf_Stock.clear();
+        tf_Nombre.clear();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb){
         mostrarProductos();
@@ -141,6 +146,7 @@ public class AlmacenController implements Initializable, Serializable {
         String query = "INSERT INTO productos VALUES ("+tf_Codigo.getText()+", '"+tf_Nombre.getText()+"',"+tf_Precio.getText()+",'"+tf_Descripcion.getText()+"',"+tf_Stock.getText()+")";
         executeQuery(query);
         mostrarProductos();
+        limpiar();
     }
 
     @FXML
@@ -149,6 +155,7 @@ public class AlmacenController implements Initializable, Serializable {
                 "', PrecioUnitario = "+tf_Precio.getText()+", Descripcion = '"+tf_Descripcion.getText()+"', Stock = "+tf_Stock.getText()+"";
         executeQuery(query);
         mostrarProductos();
+        limpiar();
     }
 
     @FXML
@@ -156,6 +163,7 @@ public class AlmacenController implements Initializable, Serializable {
         String query = "DELETE FROM productos WHERE CodigoProducto= "+tf_Codigo.getText()+"";
         executeQuery(query);
         mostrarProductos();
+        limpiar();
     }
 
     @FXML
@@ -175,8 +183,16 @@ public class AlmacenController implements Initializable, Serializable {
             st = conn.createStatement();
             st.executeUpdate(query);
         }catch (Exception e){
-            e.printStackTrace();
+            generarAlerta("Error",e.getMessage());
         }
+    }
+
+    private void generarAlerta(String razon, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setHeaderText(null);
+        alerta.setTitle(razon);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 
 }

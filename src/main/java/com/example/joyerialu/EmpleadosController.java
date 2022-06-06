@@ -120,6 +120,19 @@ public class EmpleadosController implements Initializable, Serializable {
         }
     }
 
+    public void limpiar(){
+        tf_ID.clear();
+        tf_Nombres.clear();
+        tf_ApPat.clear();
+        tf_ApMat.clear();
+        dp_FecNac.setValue(null);
+        tf_Telefono.clear();
+        tf_Correo.clear();
+        tf_RFC.clear();
+        tf_Direccion.clear();
+        dp_FecReg.setValue(null);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb){
         mostrarEmpleados();
@@ -173,6 +186,7 @@ public class EmpleadosController implements Initializable, Serializable {
                 dp_FecReg.getValue().toString()+"','"+tf_RFC.getText()+"','"+tf_Correo.getText()+"')";
         executeQuery(query);
         mostrarEmpleados();
+        limpiar();
     }
 
     @FXML
@@ -182,6 +196,7 @@ public class EmpleadosController implements Initializable, Serializable {
                 dp_FecNac.getValue().toString()+"', FechaRegistro = '"+dp_FecReg.getValue().toString()+"', RFC = '"+tf_RFC.getText()+"', CorreoE = '"+tf_Correo.getText()+"'";
         executeQuery(query);
         mostrarEmpleados();
+        limpiar();
     }
 
     @FXML
@@ -189,6 +204,7 @@ public class EmpleadosController implements Initializable, Serializable {
         String query = "DELETE FROM empleados WHERE CodigoEmpleado= "+tf_ID.getText()+"";
         executeQuery(query);
         mostrarEmpleados();
+        limpiar();
     }
 
     @FXML
@@ -223,8 +239,16 @@ public class EmpleadosController implements Initializable, Serializable {
             st = conn.createStatement();
             st.executeUpdate(query);
         }catch (Exception e){
-            e.printStackTrace();
+            generarAlerta("Error",e.getMessage());
         }
+    }
+
+    private void generarAlerta(String razon, String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setHeaderText(null);
+        alerta.setTitle(razon);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 
 }

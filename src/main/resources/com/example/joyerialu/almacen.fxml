@@ -102,7 +102,11 @@
                   <Font name="Lucida Bright" size="19.0" />
                </font>
             </TextField>
-            <TextField fx:id="tf_Nombre" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tf_Nombre" prefHeight="42.0" prefWidth="240.0" style="-fx-background-color: #c1c6ca;" GridPane.columnIndex="1" GridPane.rowIndex="1" >
+            <font>
+               <Font name="Lucida Bright" size="19.0" />
+            </font>
+            </TextField>
          </children>
       </GridPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2197ff00" height="97.0" layoutX="16.0" layoutY="689.0" stroke="#5f5d5d" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="1248.0" />

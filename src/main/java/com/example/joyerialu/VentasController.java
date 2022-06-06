@@ -94,6 +94,7 @@ public class VentasController implements Initializable, Serializable {
     }
 
     private void limpiar(){
+        dp_fecha.setValue(null);
         tf_total.clear();
         tf_codEmp.clear();
         tf_codProd.clear();
@@ -205,6 +206,7 @@ public class VentasController implements Initializable, Serializable {
                 //En caso de que progresara correctamente, se ejecuta la actualización de la tabla ficticia enviando el id de la venta
                 actualizarTablaFicticia(idVenta);
                 limpiar();
+                numeroFactura();
             } catch (Exception e){
                 generarAlerta("Error",e.getMessage());
             }
